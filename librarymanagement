@@ -1,0 +1,130 @@
+books = []
+
+def add_book():
+    title = input("Enter Book Title: ")
+    author = input("Enter Author Name: ")
+
+    book = {
+        "title": title,
+        "author": author,
+        "available": True
+    }
+
+    books.append(book)
+    print("Book Added Successfully!\n")
+
+
+def view_books():
+    if len(books) == 0:
+        print("No books available.\n")
+    else:
+        for book in books:
+            print("Title :", book["title"])
+            print("Author:", book["author"])
+            if book["available"]:
+                print("Status: Available")
+            else:
+                print("Status: Issued")
+            print()
+
+
+def search_book():
+    name = input("Enter Book Title to Search: ")
+
+    for book in books:
+        if book["title"].lower() == name.lower():
+            print("\nBook Found")
+            print("Title :", book["title"])
+            print("Author:", book["author"])
+            if book["available"]:
+                print("Status: Available")
+            else:
+                print("Status: Issued")
+            return
+
+    print("Book Not Found!\n")
+
+
+def issue_book():
+    name = input("Enter Book Title to Issue: ")
+
+    for book in books:
+        if book["title"].lower() == name.lower():
+            if book["available"]:
+                book["available"] = False
+                print("Book Issued Successfully!\n")
+            else:
+                print("Book Already Issued!\n")
+            return
+
+    print("Book Not Found!\n")
+
+
+def return_book():
+    name = input("Enter Book Title to Return: ")
+
+    for book in books:
+        if book["title"].lower() == name.lower():
+            if not book["available"]:
+                book["available"] = True
+                print("Book Returned Successfully!\n")
+            else:
+                print("Book is Already Available!\n")
+            return
+
+    print("Book Not Found!\n")
+
+
+def display_statistics():
+    total = len(books)
+    available = 0
+    issued = 0
+
+    for book in books:
+        if book["available"]:
+            available += 1
+        else:
+            issued += 1
+
+    print("\nLibrary Statistics")
+    print("Total Books     :", total)
+    print("Available Books :", available)
+    print("Issued Books    :", issued)
+    print()
+
+
+while True:
+    try:
+        print("===== Library Management System =====")
+        print("1. Add Book")
+        print("2. View Books")
+        print("3. Search Book")
+        print("4. Issue Book")
+        print("5. Return Book")
+        print("6. Display Statistics")
+        print("7. Exit")
+
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            add_book()
+        elif choice == 2:
+            view_books()
+        elif choice == 3:
+            search_book()
+        elif choice == 4:
+            issue_book()
+        elif choice == 5:
+            return_book()
+        elif choice == 6:
+            display_statistics()
+        elif choice == 7:
+            print("Thank You!")
+            break
+        else:
+            print("Invalid Choice!\n")
+
+    except ValueError:
+        print("Please enter numbers only.\n")
+    except Exception as e:
+        print("Error:", e)
