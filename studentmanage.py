@@ -61,6 +61,14 @@ while True:
         break
 print("\nNumber of students:", len(students))
 view_students(students)
+def search_student():
+    search_name = input("Enter the name of the student to search: ")
+    for student in students:
+        if student[0].lower() == search_name.lower():
+            print("Student found:", student[0])
+            return
+    print("No data")
+
 
 
 
