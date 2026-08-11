@@ -34,3 +34,33 @@ for student in students:
     print("Subject 2:", student[2])
     print("Subject 3:", student[3])
     print()
+    def view_students(students):
+    if not students:
+        print("\nNo students available.")
+        return
+    print("\nStudent Details:")
+    for student in students:
+        total = student[1] + student[2] + student[3]
+        percentage = total / 3
+        print("Name:", student[0])
+        print("Subject 1:", student[1])
+        print("Subject 2:", student[2])
+        print("Subject 3:", student[3])
+        print("Total:", total)
+        print("Percentage:", percentage)
+        print()
+while True:
+    add_student(students)
+    choice = input("Do you want to add another student? (yes/no): ")
+    if choice.lower() == "yes":
+        continue
+    elif choice.lower() == "no":
+        break
+    else:
+        print("Invalid input")
+        break
+print("\nNumber of students:", len(students))
+view_students(students)
+
+
+
